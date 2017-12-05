@@ -23,7 +23,7 @@ namespace NancySelfHost.Middleware
             settings.ContractResolver = new SignalRContractResolver();
             var serializer = JsonSerializer.Create(settings);
 
-            HubConfiguration hubConfiguration = new HubConfiguration();
+            var hubConfiguration = new HubConfiguration();
             hubConfiguration.Resolver.Register(typeof(JsonSerializer), () => serializer);
 
             appBuilder.UseCors(CorsOptions.AllowAll);
@@ -33,7 +33,6 @@ namespace NancySelfHost.Middleware
 
     public class SignalRContractResolver : IContractResolver
     {
-
         private readonly Assembly _assembly;
         private readonly IContractResolver _camelCaseContractResolver;
         private readonly IContractResolver _defaultContractSerializer;
@@ -55,6 +54,5 @@ namespace NancySelfHost.Middleware
 
             return _camelCaseContractResolver.ResolveContract(type);
         }
-
     }
 }

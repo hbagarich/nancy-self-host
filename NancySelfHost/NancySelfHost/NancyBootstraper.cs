@@ -27,12 +27,13 @@ namespace NancySelfHost
             }
         }
 
+
         protected override void ConfigureConventions(NancyConventions nancyConventions)
         {
             base.ConfigureConventions(nancyConventions);
             nancyConventions.StaticContentsConventions.Clear();
-            nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddFile("/main.js", "/content/main.js"));
-            nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddFile("/vendor.js", "/content/vendor.js"));
+            nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddFile("/bundle.js", "/Content/bundle.js"));
+            nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddFile("/bundle.map.js", "/content/bundle.map.js"));
             nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddFile("/manifest.js", "/content/manifest.js"));
             nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddFile("/style.css", "/content/style.css"));
             //nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("css", "/content/css", "css"));

@@ -12,7 +12,7 @@ using Owin;
 
 namespace NancySelfHost.Middleware
 {
-    public class NancyMiddleware: IOwinMiddleWare
+    public class NancyMiddleware : IOwinMiddleWare
     {
         private readonly INancyBootstrapper _nancyBootstrapper;
 
@@ -25,35 +25,10 @@ namespace NancySelfHost.Middleware
 
         public void Attach(IAppBuilder appBuilder)
         {
-            var httpListener = (HttpListener)appBuilder.Properties["System.Net.HttpListener"];
-            //httpListener.AuthenticationSchemes = AuthenticationSchemes.IntegratedWindowsAuthentication;
-
             appBuilder.UseCors(CorsOptions.AllowAll);
-
-            httpListener.AuthenticationSchemeSelectorDelegate = request =>
-            {
-                return AuthenticationSchemes.Anonymous;
-                if (request.Url.AbsolutePath.StartsWith("/signalr"))
-                {
-                    return AuthenticationSchemes.Anonymous;
-
-                }
-                else
-                {
-                    if ("OPTIONS".Equals(request.HttpMethod, StringComparison.OrdinalIgnoreCase))
-                    {
-                        return AuthenticationSchemes.Anonymous;
-                    }
-                    else
-                    {
-                        return AuthenticationSchemes.Ntlm;
-                    }
-                }
-            };
             var options = new NancyOptions
             {
                 Bootstrapper = _nancyBootstrapper,
-                // PerformPassThrough = context => context.Request.Path.StartsWith("/api")
             };
             appBuilder.UseNancy(options);
         }

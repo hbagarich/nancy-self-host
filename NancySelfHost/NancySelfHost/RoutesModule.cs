@@ -7,14 +7,11 @@ using Nancy;
 
 namespace NancySelfHost
 {
-    public class RoutesModule: NancyModule
+    public class RoutesModule : NancyModule
     {
         public RoutesModule()
         {
-            Get["/"] = _ =>
-            {
-                return "Hello";
-            };
+            Get["/"] = _ => View["index.html"];
         }
     }
 }

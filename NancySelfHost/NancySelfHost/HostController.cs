@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNet.SignalR;
+using NancySelfHost.Hubs;
 
 namespace NancySelfHost
 {
@@ -15,6 +17,18 @@ namespace NancySelfHost
         {
             var owinAppFactory = new NancyStartup();
             _owinApp = owinAppFactory.Start(getUrls());
+            Task.Run(sendRadnomInt).ConfigureAwait(false);
+        }
+
+        private async Task sendRadnomInt()
+        {
+            var random = new Random();
+            while (true){
+               
+                var context = GlobalHost.ConnectionManager.GetHubContext<HelloWorldHub>();
+                context.Clients.All.broadcastMessage(random.Next(1, 100));
+                await Task.Delay(1000);
+            }
         }
 
         public void StopServer()

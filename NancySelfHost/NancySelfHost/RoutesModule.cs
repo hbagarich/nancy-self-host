@@ -12,6 +12,7 @@ namespace NancySelfHost
         public RoutesModule()
         {
             Get["/"] = _ => View["index.html"];
+            Post["/post"] = _ => "Hello Post";
         }
     }
 }

@@ -33,13 +33,7 @@ namespace NancySelfHost
             base.ConfigureConventions(nancyConventions);
             nancyConventions.StaticContentsConventions.Clear();
             nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddFile("/bundle.js", "/Content/bundle.js"));
-            nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddFile("/bundle.map.js", "/content/bundle.map.js"));
-            nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddFile("/manifest.js", "/content/manifest.js"));
-            nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddFile("/style.css", "/content/style.css"));
-            //nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("css", "/content/css", "css"));
-            //nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("js", "/content/js", "js"));
-            //nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("images", "/content/img"));
-            //nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("fonts", "/content/fonts"));
+            nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddFile("/bundle.map.js", "/Content/bundle.map.js"));
         }
     }
 }
